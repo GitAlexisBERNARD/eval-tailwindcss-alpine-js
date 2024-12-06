@@ -1,0 +1,72 @@
+<div>
+  <div x-data="RecipesList()" x-init="init()">
+    <div class="my-6 mx-6">
+      <div class="flex flex-row justify-between">
+        <div>
+          <h3 class="text-lg font-bold">Filtrer par difficulté</h3>
+          <div class="mt-2">
+            <select
+              x-model="selectedDifficulty"
+              @change="applyFilters()"
+              class="px-4 py-2 rounded border bg-white text-gray-700"
+            >
+              <template x-for="difficulty in difficulties" :key="difficulty">
+                <option :value="difficulty" x-text="difficulty"></option>
+              </template>
+            </select>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold">Filtrer par temps de préparation</h3>
+          <select
+            x-model="selectedPreparationTime"
+            @change="applyFilters()"
+            class="px-4 py-2 rounded border bg-white text-gray-700"
+          >
+            <template x-for="time in preparationTimes" :key="time">
+              <option :value="time" x-text="time"></option>
+            </template>
+          </select>
+        </div>
+            <div>
+          <h3 class="text-lg font-bold">Filtrer par catégorie</h3>
+          <select
+            x-model="selectedCategory"
+            @change="applyFilters()"
+            class="px-4 py-2 rounded border bg-white text-gray-700"
+          >
+            <template x-for="category in categories" :key="category">
+              <option :value="category" x-text="category"></option>
+            </template>
+          </select>
+        </div>
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            x-model="showFavoritesOnly"
+            @change="applyFilters()"
+            class="mr-2"
+          />
+          <h3>Afficher les favoris uniquement</h3>
+        </label>        
+        <div class="my-4 mx-6">
+          <p class="text-lg">
+            Nombre de recettes trouvées :
+            <span x-text="filteredRecipes.length"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <template x-if="filteredRecipes.length === 0">
+      <p class="text-center text-gray-500 text-xl">
+        Oups... aucune recette trouvée. Peut-être que le chef est en grève ! 👩‍🍳
+      </p>
+    </template>
+    <div class="grille my-12">
+      <template x-if="filteredRecipes.length === 0">
+      </template>
+      <load src="src/components/Card.html" />
+    </div>
+    <load src="src/components/Modal.html" />
+  </div>
+</div>

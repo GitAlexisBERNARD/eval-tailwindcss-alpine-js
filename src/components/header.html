@@ -1,0 +1,60 @@
+<header
+  x-data="{ 
+    activeMenu: false, 
+    ...NbRecipes() 
+  }"
+  x-init="init();"
+  class="px-6 py-4 bg-white sticky top-0 z-10 w-full flex justify-between lg:py-0 items-center"
+>
+  <div>
+    <a href="/" class="flex items-center gap-5">
+      <img src="/icons/Logo.svg" alt="Logo de l'application" />
+      <h3>Riz ketchup</h3>
+    </a>
+  </div>
+
+  <div class="flex items-center gap-4 lg:flex-row-reverse">
+    <button
+      class="relative z-10 flex h-5 w-8 flex-col justify-between *:h-[2px] *:w-full *:bg-black *:transition-all *:duration-300 *:ease lg:hidden"
+      @click="activeMenu = !activeMenu"
+    >
+      <div
+        :class="{ 'translate-y-[9px] rotate-45 !bg-white': activeMenu }"
+      ></div>
+      <div :class="{ '!bg-white opacity-0': activeMenu }"></div>
+      <div
+        :class="{ '-translate-y-[9px] -rotate-45 !bg-white': activeMenu }"
+      ></div>
+    </button>
+    <nav
+      class="fixed inset-0 bg-indigo text-2xl text-white opacity-0 transition-all duration-300 ease-in-out lg:visible lg:relative lg:flex lg:items-center lg:bg-transparent lg:text-sm lg:font-bold lg:uppercase lg:tracking-wide lg:text-black lg:opacity-100"
+      :class="activeMenu ? 'visible opacity-100' : 'invisible opacity-0'"
+    >
+      <ul class="mt-[25vh] mx-16 lg:m-0 lg:flex">
+        <li class="menu-item">
+          <a class="menu-link" href="/"
+            >Nos recettes actuellement disponible:
+            <span x-text="recipesCount"></span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="/cours">Nos cours de cuisine</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="/agenda">Agenda</a>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="/contact">Contact</a>
+        </li>
+        <li class="menu-item">
+          <a
+            class="menu-link lg:bg-black lg:text-white lg:px-8"
+            href="/inscription"
+            >S'inscrire</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+

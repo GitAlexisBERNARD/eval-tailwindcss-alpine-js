@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+      @apply font-sans text-base leading-normal;
+    }
+    h1 {
+      @apply text-4xl font-serif leading-tight lg:text-6xl;
+    }
+    h2 {
+      @apply text-2xl font-serif leading-tight lg:text-4xl;
+    }
+    h3 {
+      @apply text-xl font-serif leading-tight;
+    }
+    ::-moz-selection {
+      @apply bg-pink;
+    }
+    ::selection {
+      @apply bg-pink;
+    }
+}
+
+@layer components {
+    .grille {
+      @apply lg:grid lg:grid-cols-principal lg:justify-center lg:gap-12 px-6;
+    }
+    .menu-link {
+        @apply block px-5 py-4 lg:py-8;
+    }
+
+    .menu-item {
+        @apply relative overflow-hidden lg:before:absolute lg:before:bottom-0 lg:before:left-0 lg:before:h-2 lg:before:w-full lg:before:translate-y-2 lg:before:bg-black lg:before:transition-all lg:before:duration-300 lg:before:ease-in-out lg:hover:before:translate-y-0;
+    }
+}
